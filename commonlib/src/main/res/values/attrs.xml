@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateTextView">
+        <attr name="color_selected" format="color" />
+        <attr name="color_unselected" format="color" />
+        <attr name="bg_selected" format="reference" />
+        <attr name="bg_unselected" format="reference" />
+        <attr name="direction" format="string" />
+    </declare-styleable>
+</resources>
