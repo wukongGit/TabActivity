@@ -17,6 +17,9 @@ import java.util.List;
  * Created by suncheng on 2016/12/16.
  */
 public class CommonTabActivity extends AppCompatActivity {
+    public static final String EXTRA_TAB_ID = "extra_tab_id";
+    private static final String KEY_SAVE_CURRENT_TAB = "KEY_SAVE_CURRENT_TAB";
+
     private LinearLayout mBottom;
     private int mItemCount;
     private List<TabLayout> mTabItems;
@@ -31,6 +34,14 @@ public class CommonTabActivity extends AppCompatActivity {
         mBottom = (LinearLayout) findViewById(R.id.tab_bottom);
         mTabItems = new ArrayList<>();
         initView();
+        int tabId = getIntent().getIntExtra(EXTRA_TAB_ID, 0);
+        if (null != savedInstanceState) {
+            mCurrentSelected = savedInstanceState.getInt(KEY_SAVE_CURRENT_TAB, 0);
+        } else {
+            mCurrentSelected = tabId;
+        }
+        switchFragment(mFragments.get(mCurrentSelected));
+        mTabItems.get(mCurrentSelected).setSelect(true);
     }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
@@ -111,8 +122,6 @@ public class CommonTabActivity extends AppCompatActivity {
             mBottom.setBackgroundResource(tabBackground);
         }
         generateTabs();
-        switchFragment(mFragments.get(0));
-        mTabItems.get(0).setSelect(true);
     }
 
     private void generateTabs() {
