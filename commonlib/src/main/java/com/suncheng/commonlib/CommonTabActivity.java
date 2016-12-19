@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.suncheng.commonlib.view.TabLayout;
 
@@ -23,6 +24,7 @@ public class CommonTabActivity extends AppCompatActivity {
     private LinearLayout mBottom;
     private int mItemCount;
     private List<TabLayout> mTabItems;
+    private int mDivider;
     private List<CallBackFragment> mFragments;
     private CallBackFragment mCurrentFragment;
     private int mCurrentSelected = 0;
@@ -61,15 +63,15 @@ public class CommonTabActivity extends AppCompatActivity {
      * */
     protected void initView() {}
     protected void setViews(List<String> titles, List<CallBackFragment> fragments) {
-        setViews(titles, fragments, null, null, 0, 0, 0);
+        setViews(titles, fragments, null, null, 0, 0, 0, 0);
     }
     protected void setViews(List<CallBackFragment> fragments, List<Drawable> selected, List<Drawable> unSelected) {
-        setViews(null, fragments, selected, unSelected, 0, 0, 0);
+        setViews(null, fragments, selected, unSelected, 0, 0, 0, 0);
     }
     protected void setViews(List<String> titles, List<CallBackFragment> fragments, List<Drawable> selected, List<Drawable> unSelected) {
-        setViews(titles, fragments, selected, unSelected, 0, 0, 0);
+        setViews(titles, fragments, selected, unSelected, 0, 0, 0, 0);
     }
-    protected void setViews(List<String> titles, List<CallBackFragment> fragments, List<Drawable> selected, List<Drawable> unSelected, int selectedColor, int unSelectedColor, int tabBackground){
+    protected void setViews(List<String> titles, List<CallBackFragment> fragments, List<Drawable> selected, List<Drawable> unSelected, int selectedColor, int unSelectedColor, int tabBackground, int divider){
         if(fragments == null) {
             throw new RuntimeException("fragments should not be null");
         }
@@ -121,13 +123,25 @@ public class CommonTabActivity extends AppCompatActivity {
         if(tabBackground != 0) {
             mBottom.setBackgroundResource(tabBackground);
         }
+        if(divider != 0) {
+            mDivider = divider;
+        }
         generateTabs();
     }
 
     private void generateTabs() {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
-        for(LinearLayout layout : mTabItems) {
-            mBottom.addView(layout, lp);
+        for(TabLayout tabLayout : mTabItems) {
+            mBottom.addView(tabLayout, lp);
+        }
+        if(mDivider != 0) {
+            LinearLayout.LayoutParams dlp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            dlp.gravity = Gravity.CENTER;
+            for(int i = 1; i < mItemCount; i++) {
+                ImageView imageView = new ImageView(this);
+                imageView.setImageResource(mDivider);
+                mBottom.addView(imageView, 2 * i - 1, dlp);
+            }
         }
     }
 
