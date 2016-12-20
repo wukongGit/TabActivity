@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.suncheng.commonlib.view.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <com.suncheng.commonlib.view.StateTextView
+        android:gravity="center"
+        android:id="@+id/tab_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:color_selected="#22a7f0"
+        app:color_unselected="#999999"
+        android:textSize="12sp"/>
+</com.suncheng.commonlib.view.TabLayout>
