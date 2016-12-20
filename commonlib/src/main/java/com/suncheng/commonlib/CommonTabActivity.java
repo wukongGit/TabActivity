@@ -2,6 +2,7 @@ package com.suncheng.commonlib;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -44,6 +45,11 @@ public class CommonTabActivity extends AppCompatActivity {
         }
         switchFragment(mFragments.get(mCurrentSelected));
         mTabItems.get(mCurrentSelected).setSelect(true);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(KEY_SAVE_CURRENT_TAB, mCurrentSelected);
     }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {

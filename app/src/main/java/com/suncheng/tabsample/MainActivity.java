@@ -28,6 +28,6 @@ public class MainActivity extends CommonTabActivity {
         mUnSelected.add(getResources().getDrawable(R.mipmap.tab_message_icon_unselected));
         mUnSelected.add(getResources().getDrawable(R.mipmap.tab_my_icon_unselected));
         //setViews(mTitles, mFragments, mSelected, mUnSelected);
-        setViews(mTitles, mFragments, mSelected, mUnSelected, 0xffFF4081, 0xffffffff, R.color.colorPrimary);
+        setViews(mTitles, mFragments, mSelected, mUnSelected, 0xffFF4081, 0xffffffff, R.color.colorPrimary, R.mipmap.bottom_divider);
     }
 }
